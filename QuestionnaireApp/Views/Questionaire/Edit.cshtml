@@ -1,0 +1,34 @@
+﻿@model QuestionnaireApp.Models.Questionaire
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="row">
+    
+        <section id="loginForm">
+            @using (Html.BeginForm("Edit", "Questionaire", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <h4>Edit Questionaire</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Questionaire_Description, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Questionaire_Description, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Questionaire_Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Update" class="btn btn-success" />
+                    </div>
+                </div>
+
+
+            }
+        </section>
+    </div>
+

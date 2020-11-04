@@ -1,0 +1,52 @@
+﻿@model QuestionnaireApp.Models.Root
+@{
+    ViewBag.Title = "ViewQuestionaire";
+}
+@if (TempData["error"] != null)
+{
+    <p>@TempData["error"]</p>
+}
+else
+{
+    @TempData["success"]
+}
+
+
+
+<h2>ViewQuestionaire</h2>
+@using (Html.BeginForm("CreateQuestionaire", "Questionaire", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Question Description</th>
+                <th>Answers</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.list != null)
+            {
+
+                for (int i = 0; i < Model.list.Count; i++)
+                {
+                    <tr>
+                        <td> @Html.TextBoxFor(x => x.list[i].ID, new { @class = "form-control", @ReadOnly = "ReadOnly" })</td>
+                        <td> @Html.TextBoxFor(x => x.list[i].Questionaire_Description, new { @class = "form-control", @ReadOnly = "ReadOnly" })</td>
+                        <td> @Html.TextBoxFor(x => x.list[i].Answer, new { @class = "form-control", @required = "required" })</td>
+
+                    </tr>
+                }
+
+            }
+        </tbody>
+
+    </table>
+    <input type="submit" class="btn btn-success" value="Submit Questionaire" />
+}
+

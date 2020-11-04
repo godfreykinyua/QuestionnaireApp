@@ -1,0 +1,66 @@
+﻿@model QuestionnaireApp.Models.Root
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="row">
+        <section id="loginForm">
+            @using (Html.BeginForm("Index", "Questionaire", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+            <h4>Create Questionaire</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.questionaire.Questionaire_Description, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.questionaire.Questionaire_Description, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.questionaire.Questionaire_Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </div>
+
+
+            }
+
+        </section>
+        <hr />
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Question Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.list != null)
+                {
+
+                    for (int i = 0; i < Model.list.Count; i++)
+                    {
+                        <tr>
+                            <td> @Html.DisplayFor(x => x.list[i].ID)</td>
+                            <td> @Html.DisplayFor(x => x.list[i].Questionaire_Description)</td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = Model.list[i].ID }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = Model.list[i].ID })
+                            </td>
+                        </tr>
+                    }
+
+                }
+            </tbody>
+
+        </table>
+   
+    
+</div>

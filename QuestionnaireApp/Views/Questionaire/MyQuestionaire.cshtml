@@ -1,0 +1,34 @@
+﻿
+@model IEnumerable<QuestionnaireApp.Models.QuestionaireEntries>
+@{
+    ViewBag.Title = "MyQuestionaire";
+}
+
+<h2>My Questionaire</h2>
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Question Description</th>
+            <th>Answers</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> @Html.DisplayFor(modelItem => item.ID) </td>
+                <td> @Html.DisplayFor(modelItem => item.Questionaire_Description)</td>
+                <td> @Html.DisplayFor(modelItem => item.Answer)</td>
+
+            </tr>
+        }
+
+
+    </tbody>
+
+</table>
+
